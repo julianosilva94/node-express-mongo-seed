@@ -16,23 +16,6 @@ const UserSchema = new mongoose.Schema({
     required: true,
     select: false,
   },
-  balance: {
-    type: Number,
-    select: false,
-    default: 0,
-  },
-  creditCards: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'CreditCard',
-  }],
-  contacts: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-  }],
-  transfers: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Transfer',
-  }],
   createdAt: {
     type: Date,
     default: Date.now,
