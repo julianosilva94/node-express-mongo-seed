@@ -4,6 +4,8 @@ import helmet from 'helmet';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
+import routes from './routes';
+
 dotenv.config();
 
 const PORT = process.env.PORT || 3001;
@@ -21,8 +23,6 @@ app.use(
 
 app.use(cors());
 
-app.get('/', (req, res) => {
-  res.send('API Working');
-});
+app.use('/', routes);
 
 app.listen(PORT, HOST);
