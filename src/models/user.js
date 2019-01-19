@@ -1,3 +1,5 @@
+const MongooseAutoIncrementID = require('mongoose-auto-increment-reworked');
+
 const mongoose = require('../database');
 
 const UserSchema = new mongoose.Schema({
@@ -21,6 +23,9 @@ const UserSchema = new mongoose.Schema({
     default: Date.now,
   },
 });
+
+MongooseAutoIncrementID.initialise('User');
+UserSchema.plugin(MongooseAutoIncrementID.plugin, { modelName: 'User' });
 
 const User = mongoose.model('User', UserSchema);
 
