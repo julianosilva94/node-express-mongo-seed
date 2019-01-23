@@ -1,5 +1,5 @@
 # Pre-requisites
 
-Docker
-Docker Compose
-Yarn
+- Docker
+- Docker Compose
+- Yarn
