@@ -1,6 +1,7 @@
-const MongooseAutoIncrementID = require('mongoose-auto-increment-reworked');
+import { MongooseAutoIncrementID } from 'mongoose-auto-increment-reworked';
+import timestamps from 'mongoose-unix-timestamp-plugin';
 
-const mongoose = require('../database');
+import mongoose from '../database';
 
 const UserSchema = new mongoose.Schema({
   name: {
@@ -18,15 +19,11 @@ const UserSchema = new mongoose.Schema({
     required: true,
     select: false,
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
 });
 
-MongooseAutoIncrementID.initialise('User');
 UserSchema.plugin(MongooseAutoIncrementID.plugin, { modelName: 'User' });
+UserSchema.plugin(timestamps);
 
-const User = mongoose.model('User', UserSchema);
+const UserModel = mongoose.model('User', UserSchema);
 
-module.exports = User;
+export default UserModel;

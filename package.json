@@ -5,15 +5,19 @@
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon src/index.js",
+    "start": "nodemon src/index.js --exec babel-node -e js",
     "lint": "./node_modules/.bin/eslint src/*.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^10.0.1",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
     "babel-register": "^6.26.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
@@ -24,10 +28,10 @@
     "jsonwebtoken": "^8.4.0",
     "mongoose": "^5.4.2",
     "mongoose-auto-increment-reworked": "^1.2.1",
+    "mongoose-unix-timestamp-plugin": "^0.6.4",
     "nodemon": "^1.18.9"
   },
   "devDependencies": {
-    "babel-eslint": "^10.0.1",
     "eslint": "^5.12.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0"

@@ -1,7 +1,12 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
+import CONFIG from '../config';
 
 mongoose.set('useCreateIndex', true);
-mongoose.connect(`mongodb://${process.env.MONGO_DB_URL}`, { useNewUrlParser: true })
+mongoose
+  .connect(
+    `${CONFIG.db.driver}://${CONFIG.db.host}:${CONFIG.db.port}/${CONFIG.db.schema}`,
+    { useNewUrlParser: true },
+  )
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.log(err));
 mongoose.Promise = global.Promise;

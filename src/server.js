@@ -2,11 +2,8 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import helmet from 'helmet';
 import cors from 'cors';
-import dotenv from 'dotenv';
 
 import routes from './routes';
-
-dotenv.config();
 
 const PORT = process.env.PORT || 3001;
 const HOST = '0.0.0.0';
@@ -23,6 +20,6 @@ app.use(
 
 app.use(cors());
 
-app.use('/', routes);
+routes(app);
 
 app.listen(PORT, HOST);

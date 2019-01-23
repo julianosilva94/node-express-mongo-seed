@@ -1,9 +1,14 @@
-import express from 'express';
+import { Router } from 'express';
 
-const router = express.Router();
+import authRouter from './auth';
 
-router.get('/', async (req, res) => {
+const rootRouter = Router();
+
+rootRouter.get('/', async (req, res) => {
   res.send({ message: 'API Working' });
 });
 
-module.exports = router;
+export default (app) => {
+  app.use(rootRouter);
+  app.use('/auth', authRouter);
+};
