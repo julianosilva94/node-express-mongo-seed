@@ -2,11 +2,11 @@ version: "3.2"
 
 services:
   api:
-    container_name: node-api
+    container_name: node-express-api
     restart: always
     build: .
     command: yarn start
-    ports: 
+    ports:
       - "3001:3001"
     volumes:
       - .:/usr/api
@@ -14,7 +14,7 @@ services:
       - db
 
   db:
-    container_name: mongo-db
+    container_name: node-express-mongo-db
     image: mongo
     ports:
       - "27017:27017"
