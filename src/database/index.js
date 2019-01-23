@@ -1,4 +1,6 @@
 import mongoose from 'mongoose';
+import Bluebird from 'bluebird';
+
 import CONFIG from '../config';
 
 mongoose.set('useCreateIndex', true);
@@ -9,6 +11,6 @@ mongoose
   )
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.log(err));
-mongoose.Promise = global.Promise;
+mongoose.Promise = Bluebird.Promise;
 
 module.exports = mongoose;
