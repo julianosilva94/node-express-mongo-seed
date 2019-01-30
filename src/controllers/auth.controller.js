@@ -1,5 +1,5 @@
 import generateJWT from '../utils/generateJWT';
-import UserService from '../services/user';
+import UserService from '../services/user.service';
 
 class AuthController {
   static login = async (req, res) => {

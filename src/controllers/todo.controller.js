@@ -1,4 +1,4 @@
-import TodoService from '../services/todo';
+import TodoService from '../services/todo.service';
 
 class TodoController {
   static getAll = async (req, res) => {

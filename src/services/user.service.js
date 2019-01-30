@@ -1,10 +1,10 @@
 import bcrypt from 'bcryptjs';
 
-import UserModel from '../models/user';
+import User from '../models/user';
 
 class UserService {
   static validateLogin = async (email, password) => {
-    const user = await UserModel.findOne({ email }).select('+password');
+    const user = await User.findOne({ email }).select('+password');
 
     if (!user) {
       return false;
@@ -20,7 +20,7 @@ class UserService {
   };
 
   static checkEmailIsRegistered = async (email) => {
-    const user = await UserModel.findOne({ email });
+    const user = await User.findOne({ email });
 
     return !!user;
   };
@@ -28,7 +28,7 @@ class UserService {
   static register = async (name, email, password) => {
     const hash = await bcrypt.hash(password, 10);
 
-    const user = new UserModel({
+    const user = new User({
       name,
       email,
       password: hash,

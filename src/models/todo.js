@@ -8,6 +8,7 @@ const TodoSchema = new mongoose.Schema(
     owner: {
       type: Number,
       required: true,
+      ref: 'User',
     },
     content: {
       type: String,
@@ -20,6 +21,6 @@ const TodoSchema = new mongoose.Schema(
 TodoSchema.plugin(MongooseAutoIncrementID.plugin, { modelName: 'Todo' });
 TodoSchema.plugin(timestamps);
 
-const TodoModel = mongoose.model('Todo', TodoSchema);
+const Todo = mongoose.model('Todo', TodoSchema);
 
-export default TodoModel;
+export default Todo;
