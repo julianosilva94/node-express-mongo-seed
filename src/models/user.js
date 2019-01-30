@@ -3,23 +3,26 @@ import timestamps from 'mongoose-unix-timestamp-plugin';
 
 import mongoose from '../database';
 
-const UserSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
+const UserSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      unique: true,
+      required: true,
+      lowercase: true,
+    },
+    password: {
+      type: String,
+      required: true,
+      select: false,
+    },
   },
-  email: {
-    type: String,
-    unique: true,
-    required: true,
-    lowercase: true,
-  },
-  password: {
-    type: String,
-    required: true,
-    select: false,
-  },
-});
+  { versionKey: false },
+);
 
 UserSchema.plugin(MongooseAutoIncrementID.plugin, { modelName: 'User' });
 UserSchema.plugin(timestamps);

@@ -6,7 +6,7 @@ import CONFIG from '../config';
 mongoose.set('useCreateIndex', true);
 mongoose
   .connect(
-    `${CONFIG.db.driver}://${CONFIG.db.host}:${CONFIG.db.port}/${CONFIG.db.schema}`,
+    CONFIG.db.uri,
     { useNewUrlParser: true },
   )
   .then(() => console.log('MongoDB Connected'))

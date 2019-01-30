@@ -1,7 +1,8 @@
 import jwt from 'jsonwebtoken';
+import CONFIG from '../config';
 
-const generateJWT = (params = {}) => jwt.sign(params, process.env.JWT_SECRET, {
-  expiresIn: process.env.JWT_EXPIRATION || 84600,
-});
+const { secret, expiresIn } = CONFIG.jwt;
+
+const generateJWT = (params = {}) => jwt.sign(params, secret, { expiresIn });
 
 export default generateJWT;

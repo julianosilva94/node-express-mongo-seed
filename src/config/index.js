@@ -3,7 +3,13 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const {
-  PORT, JWT_SECRET, JWT_EXPIRATION, DB_DRIVER, DB_HOST, DB_PORT, DB_SCHEMA,
+  PORT,
+  JWT_SECRET,
+  JWT_EXPIRATION,
+  DB_DRIVER,
+  DB_HOST,
+  DB_PORT,
+  DB_SCHEMA,
 } = process.env;
 
 export default {
@@ -15,6 +21,7 @@ export default {
     expiresIn: JWT_EXPIRATION,
   },
   db: {
+    uri: `${DB_DRIVER}://${DB_HOST}:${DB_PORT}/${DB_SCHEMA}`,
     driver: DB_DRIVER,
     host: DB_HOST,
     port: DB_PORT,

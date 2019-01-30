@@ -28,7 +28,11 @@ class UserService {
   static register = async (name, email, password) => {
     const hash = await bcrypt.hash(password, 10);
 
-    const user = new UserModel({ name, email, password: hash });
+    const user = new UserModel({
+      name,
+      email,
+      password: hash,
+    });
 
     await user.save();
     user.password = undefined;

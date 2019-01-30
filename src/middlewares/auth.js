@@ -1,14 +1,20 @@
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
 
-module.exports = (req, res, next) => {
+import CONFIG from '../config';
+
+export default (req, res, next) => {
   const { authorization } = req.headers;
 
   if (!authorization || authorization === '') {
-    return res.status(401).send({ error: 'Invalid JWT' });
+    res.status(400).send({ error: 'Missing Authorization header' });
+    return next();
   }
 
-  jwt.verify(authorization, process.env.JWT_SECRET, (err, decoded) => {
-    if (err) return res.status(401).send({ error: 'Invalid JWT' });
+  jwt.verify(authorization, CONFIG.jwt.secret, (err, decoded) => {
+    if (err) {
+      res.status(401).send({ error: 'Invalid or expired JWT' });
+      return next();
+    }
 
     req.userId = decoded.id;
 

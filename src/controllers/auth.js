@@ -8,7 +8,9 @@ class AuthController {
     try {
       const user = await UserService.validateLogin(email, password);
 
-      if (!user) return res.status(400).send({ error: 'E-mail/password wrong' });
+      if (!user) {
+        return res.status(401).send({ error: 'Wrong e-mail or password' });
+      }
 
       const token = generateJWT({ id: user.id });
 
@@ -25,9 +27,9 @@ class AuthController {
     const { name, email, password } = req.body;
 
     try {
-      const registered = await UserService.checkEmailAreRegistered(email);
+      const registered = await UserService.checkEmailIsRegistered(email);
       if (registered) {
-        return res.status(400).send({ error: 'E-mail already registered' });
+        return res.status(409).send({ error: 'E-mail already registered' });
       }
 
       const user = await UserService.register(name, email, password);
